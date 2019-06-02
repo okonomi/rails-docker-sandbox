@@ -1,24 +1,25 @@
-# README
+# Rails Docker Sandbox
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Practice of Dockerize Ruby on Rails application.
 
-Things you may want to cover:
+## Build
 
-* Ruby version
+```
+$ docker build -t rails .
+```
 
-* System dependencies
+## Run
 
-* Configuration
+Show routes:
 
-* Database creation
+```
+$ docker run rails routes
+```
 
-* Database initialization
+Boot rails server (with port binding):
 
-* How to run the test suite
+```
+$ docker run -p 3000:3000 rails server
+```
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+and you can execute any rails commands.
