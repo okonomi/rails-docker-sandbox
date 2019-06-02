@@ -45,11 +45,12 @@ RUN apk add --update --no-cache \
     sqlite-libs \
     tzdata
 
-COPY . .
 COPY --from=builder /usr/local/bundle /usr/local/bundle
 COPY --from=builder /app/public/assets /app/public/assets
 COPY --from=builder /app/public/packs /app/public/packs
+COPY . .
 
 RUN bin/rails db:schema:load
 
 EXPOSE 3000
+ENTRYPOINT ["bin/rails"]
