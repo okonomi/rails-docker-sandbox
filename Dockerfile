@@ -25,11 +25,14 @@ COPY yarn.lock .
 RUN yarn install --frozen-lockfile
 
 # compile assets
+COPY Rakefile .
+COPY bin bin
+COPY .browserslistrc .
+COPY postcss.config.js .
+COPY babel.config.js .
+COPY config config
 COPY app/assets app/assets
 COPY app/javascript app/javascript
-COPY config config
-COPY bin bin
-COPY Rakefile .
 RUN bin/rails assets:precompile
 
 
