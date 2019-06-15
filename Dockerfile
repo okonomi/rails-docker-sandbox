@@ -1,8 +1,4 @@
-FROM ruby:2.6.3-alpine3.9 AS builder
-
-ENV RAILS_ENV production
-
-WORKDIR /app
+FROM ruby:2.6.3-alpine3.9 AS base
 
 RUN apk add --no-cache \
     build-base \
@@ -12,6 +8,18 @@ RUN apk add --no-cache \
     nodejs \
     yarn \
     tzdata
+
+RUN gem install bundler
+
+
+FROM base AS development
+
+
+FROM base AS builder
+
+ENV RAILS_ENV production
+
+WORKDIR /app
 
 # install gems
 RUN gem install bundler
@@ -36,7 +44,7 @@ COPY app/javascript app/javascript
 RUN bin/rails assets:precompile
 
 
-FROM ruby:2.6.3-alpine3.9
+FROM ruby:2.6.3-alpine3.9 AS production
 
 ENV RAILS_ENV production
 ENV RAILS_LOG_TO_STDOUT 1
