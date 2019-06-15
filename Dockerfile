@@ -16,6 +16,8 @@ FROM base AS development
 
 WORKDIR /app
 
+# add any settings for development environment
+
 
 FROM base AS builder
 
