@@ -4,7 +4,7 @@ ENV RAILS_ENV production
 
 WORKDIR /app
 
-RUN apk add --update --no-cache \
+RUN apk add --no-cache \
     build-base \
     libxml2-dev \
     libxslt-dev \
@@ -44,7 +44,7 @@ ENV RAILS_SERVE_STATIC_FILES 1
 
 WORKDIR /app
 
-RUN apk add --update --no-cache \
+RUN apk add --no-cache \
     sqlite-libs \
     tzdata
 
