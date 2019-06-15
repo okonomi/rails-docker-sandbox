@@ -14,6 +14,8 @@ RUN gem install bundler
 
 FROM base AS development
 
+WORKDIR /app
+
 
 FROM base AS builder
 
