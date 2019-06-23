@@ -1,0 +1,20 @@
+version: "3.7"
+
+services:
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - public-data:/usr/share/html/public
+    ports:
+      - 8080:80
+  rails:
+    build:
+      context: .
+      target: production
+    volumes:
+      - public-data:/app/public
+    command: "server -b 0.0.0.0 -p 3000"
+
+volumes:
+  public-data:
